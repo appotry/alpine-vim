@@ -6,18 +6,20 @@ MAINTAINER andy <andycrusoe@gmail.com>
 
 WORKDIR /tmp
 
-# Install dependencies
+# Install build tools
 RUN echo 'https://mirrors.tuna.tsinghua.edu.cn/alpine/latest-stable/main' > /etc/apk/repositories && \
     echo 'https://mirrors.tuna.tsinghua.edu.cn/alpine/latest-stable/community' >> /etc/apk/repositories && \
-    apk update && \
-    apk add --no-cache \
+    apk add --no-cache zlib-dev bzip2-dev pcre-dev openssl-dev ncurses-dev sqlite-dev readline-dev tk-dev && \
+    apk add --no-cache gcc g++ make cmake
+
+# Install dependencies
+RUN apk add --no-cache \
     build-base \
     ctags \
     git \
     libx11-dev \
     libxpm-dev \
     libxt-dev \
-    make \
     ncurses-dev \
     python3 \
     python3-dev \
