@@ -7,7 +7,9 @@ MAINTAINER andy <andycrusoe@gmail.com>
 WORKDIR /tmp
 
 # Install dependencies
-RUN apk update && \
+RUN echo 'https://mirrors.tuna.tsinghua.edu.cn/alpine/latest-stable/main' > /etc/apk/repositories && \
+    echo 'https://mirrors.tuna.tsinghua.edu.cn/alpine/latest-stable/community' >> /etc/apk/repositories && \
+    apk update && \
     apk add --no-cache \
     build-base \
     ctags \
