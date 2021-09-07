@@ -15,7 +15,8 @@ ENV GOPATH="$UHOME/workspace"
 ENV PATH="$PATH:$GOBIN:$GOPATH/bin"
 
 # User
-RUN apk --no-cache add sudo \
+RUN apk update && \
+    apk --no-cache add sudo \
 # Create HOME dir
     && mkdir -p "${UHOME}" \
     && chown "${UID}":"${GID}" "${UHOME}" \
