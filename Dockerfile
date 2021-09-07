@@ -70,6 +70,7 @@ RUN apk --update add \
     git \
     ncurses-terminfo \
     python3 \
+    linux-headers \
 # YouCompleteMe
     && echo "install build env" \
     && apk add --virtual build-deps \
