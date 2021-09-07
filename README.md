@@ -1,8 +1,9 @@
 #### `bloodstar/vim:latest`   
+From [JAremko/alpine-vim](https://github.com/JAremko/alpine-vim)
 
 [![](http://i.imgur.com/G6KybVM.png)](http://i.imgur.com/G6KybVM.png) 
 
-#### [For the more *"IDE like experience"* try `jare/drop-in`](https://hub.docker.com/r/jare/drop-in/)  
+#### [For the more *"IDE like experience"* try `bloodstar/drop-in`](https://hub.docker.com/r/bloodstar/drop-in/)  
 [![](http://i.imgur.com/RVTlBBO.png)](http://i.imgur.com/RVTlBBO.png) 
 
 #### [Or Vim/Emacs hybrid `jare/spacemacs`](https://hub.docker.com/r/jare/spacemacs/)   
