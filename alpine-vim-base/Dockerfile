@@ -7,7 +7,8 @@ MAINTAINER andy <andycrusoe@gmail.com>
 WORKDIR /tmp
 
 # Install dependencies
-RUN apk add --no-cache \
+RUN apk update && \
+    apk add --no-cache \
     build-base \
     ctags \
     git \
