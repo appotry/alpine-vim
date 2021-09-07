@@ -15,7 +15,9 @@ ENV GOPATH="$UHOME/workspace"
 ENV PATH="$PATH:$GOBIN:$GOPATH/bin"
 
 # User
-RUN apk update && \
+RUN echo 'https://mirrors.tuna.tsinghua.edu.cn/alpine/latest-stable/main' > /etc/apk/repositories && \
+    echo 'https://mirrors.tuna.tsinghua.edu.cn/alpine/latest-stable/community' >> /etc/apk/repositories && \
+    apk update && \
     apk --no-cache add sudo \
 # Create HOME dir
     && mkdir -p "${UHOME}" \
