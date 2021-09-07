@@ -19,8 +19,11 @@ RUN echo 'https://mirrors.tuna.tsinghua.edu.cn/alpine/latest-stable/main' > /etc
     libxt-dev \
     make \
     ncurses-dev \
-    python \
-    python-dev
+    python3 \
+    python3-dev
+    
+RUN wget https://bootstrap.pypa.io/get-pip.py && \
+    python3 get-pip.py
 
 # Build vim from git source
 RUN git clone https://github.com/vim/vim \
