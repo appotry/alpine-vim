@@ -1,4 +1,4 @@
-FROM jare/alpine-vim:latest
+FROM bloodstar/alpine-vim-base:latest
 
 # User config
 ENV UID="1000" \
