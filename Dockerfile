@@ -67,7 +67,7 @@ RUN apk --update add \
     curl \
     git \
     ncurses-terminfo \
-    python \
+    python3 \
 # YouCompleteMe
     && apk add --virtual build-deps \
     build-base \
@@ -75,7 +75,7 @@ RUN apk --update add \
     go \
     llvm \
     perl \
-    python-dev \
+    python3-dev \
     && git clone --depth 1  https://github.com/Valloric/YouCompleteMe \
     $UHOME/bundle/YouCompleteMe/ \
     && cd $UHOME/bundle/YouCompleteMe \
