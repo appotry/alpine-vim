@@ -34,7 +34,7 @@ RUN git clone https://github.com/vim/vim \
     --enable-multibyte \
     --enable-pythoninterp \
     --with-features=big \
-    --with-python-config-dir=/usr/lib/python2.7/config \
+    --with-python-config-dir=/usr/lib/python3.9/config \
  && make install
  
  FROM alpine:latest
