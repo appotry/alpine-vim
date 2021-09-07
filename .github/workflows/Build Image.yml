@@ -44,6 +44,6 @@ jobs:
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           push: true
           tags: |
-            bloodstar/v2fly-privoxy:stable-${{ steps.set-version.outputs.version }}
-            bloodstar/v2fly-privoxy:latest
+            bloodstar/vim:stable-${{ steps.set-version.outputs.version }}
+            bloodstar/vim:latest
 
