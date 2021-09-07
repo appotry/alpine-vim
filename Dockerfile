@@ -71,6 +71,7 @@ RUN apk --update add \
     ncurses-terminfo \
     python3 \
 # YouCompleteMe
+    && echo "install build env" \
     && apk add --virtual build-deps \
     build-base \
     cmake \
@@ -83,13 +84,15 @@ RUN apk --update add \
     && cd $UHOME/bundle/YouCompleteMe \
     && git submodule update --init --recursive \
     && $UHOME/bundle/YouCompleteMe/install.py --gocode-completer \
-# Install and compile procvim.vim                        
+# Install and compile procvim.vim  
+    && echo "Install and compile procvim.vim" \
     && git clone --depth 1 https://github.com/Shougo/vimproc.vim \
     $UHOME/bundle/vimproc.vim \
     && cd $UHOME/bundle/vimproc.vim \
     && make \
     && chown $UID:$GID -R $UHOME \
 # Cleanup
+    && echo "Cleanup" \
     && apk del build-deps \
     && apk add \
     libxt \
