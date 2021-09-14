@@ -13,18 +13,18 @@ Edit From [JAremko/alpine-vim](https://github.com/JAremko/alpine-vim)
 
 ####  Based on ["The Ultimate vimrc"](https://github.com/amix/vimrc)  
 *Make sure to use "Solarized Dark" compatible theme or color palette may look weird.*  
-*You can configure terminal color mode by setting TERM variable `docker run ... -e TERM=<VALUE> jare/vim-bundle `
+*You can configure terminal color mode by setting TERM variable `docker run ... -e TERM=<VALUE> bloodstar/vim-bundle `
 By default the `<VALUE>` is `xterm-256color` but for the "less colorful" terminals set it to `xterm`.*
 ###### **The best way to use:**  
 **Make an alias:**
-`alias edit='docker run -ti --rm -v $(pwd):/home/developer/workspace jare/vim-bundle'`
+`alias edit='docker run -ti --rm -v $(pwd):/home/developer/workspace bloodstar/vim-bundle'`
 **Have fun!**  `edit some.file`
-*Also You can use  this one for getting updates:*  `alias edit_update="docker pull jare/vim-bundle:latest"`
+*Also You can use  this one for getting updates:*  `alias edit_update="docker pull bloodstar/vim-bundle:latest"`
 ###### **How to disable some plugins:**  
-`docker run ... -e DISABLE="'vim-airline', 'nerdtree'" ... jare/vim-bundle`
+`docker run ... -e DISABLE="'vim-airline', 'nerdtree'" ... bloodstar/vim-bundle`
 ###### **How to add your plugins and .vimrc:**
   1. Create a folder with your `.vimrc` file and, if you want to add plugins, subfolder called `bundle` with them.
-  2. mount it: `docker run ... -v <***>/my-stuff:/ext/ ... jare/vim-bundle` 
+  2. mount it: `docker run ... -v <***>/my-stuff:/ext/ ... bloodstar/vim-bundle` 
   *But the best way will be extending this container.*
 
 ###### **Plugins:**  
@@ -73,7 +73,7 @@ By default the `<VALUE>` is `xterm-256color` but for the "less colorful" termina
 *[.vimrc](https://github.com/JAremko/alpine-vim/blob/master/.vimrc)*
 
 ###### **Working with Golang:**
-  - For the full Golang support you need to mount `/usr/lib/go`. For example, run [`jare/go-tools`](https://hub.docker.com/r/jare/go-tools/) in the detached mode `docker create -v /usr/lib/go --name vim-go-tools jare/go-tools /bin/true` and mount its volumes like this `docker run ...  --volumes-from vim-go-tools ... jare/vim-bundle` or add it to the alias `alias edit="docker run -ti --rm --volumes-from go-tools -v $(pwd):/home/developer/workspace jare/vim-bundle"`
+  - For the full Golang support you need to mount `/usr/lib/go`. For example, run [`jare/go-tools`](https://hub.docker.com/r/jare/go-tools/) in the detached mode `docker create -v /usr/lib/go --name vim-go-tools jare/go-tools /bin/true` and mount its volumes like this `docker run ...  --volumes-from vim-go-tools ... bloodstar/vim-bundle` or add it to the alias `alias edit="docker run -ti --rm --volumes-from go-tools -v $(pwd):/home/developer/workspace bloodstar/vim-bundle"`
   - If you want to use a [go-tool](https://hub.docker.com/r/jare/go-tools/) , but [vim-go](https://github.com/fatih/vim-go) doesn't provide a shorthand - you can simply type, for example, `:!gofmt %` and it will output formatted source of the current buffers(`%:p ` absolute file path, `%:h` head of the file name and `%:p:h` is the current directory). If you want to overwrite - use `:% ! gofmt %` The `gofmt` tool used as an example, actually, it covered in vim-go.
  
 ###### Alternatively, you can put something like this into .bashrc to automatically bootstrap all containers:  
@@ -90,7 +90,7 @@ function ed() {
   fi
   echo 'Starting Vim'
   docker run -ti --rm -p 8080:8080 --volumes-from 'vim-go-tools' \
-    -v $('pwd'):/home/developer/workspace 'jare/vim-bundle' "${@}"
+    -v $('pwd'):/home/developer/workspace 'bloodstar/vim-bundle' "${@}"
 }
 export -f ed
  ```
