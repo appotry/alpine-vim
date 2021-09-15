@@ -75,7 +75,12 @@ RUN git clone https://github.com/vim/vim \
     --enable-multibyte \
     --enable-pythoninterp \
     --with-features=big \
-    --with-python-config-dir=/usr/lib/python3.9/config \
+    --enable-pythoninterp=yes \
+    --enable-cscope \
+    --enable-fontset \
+    --with-python3-config-dir=/usr/lib/python3.9/config-3.9-x86_64-linux-musl/ \
+    --enable-python3interp=yes \
+    --with-python3-command=python3.9
  && make install
  
  FROM alpine:latest
