@@ -27,6 +27,7 @@ RUN apk add --no-cache \
 
 # Build vim from git source
 ENV pythonver=3.9
+ENV LDFLAGS="-rdynamic"
 RUN git clone https://github.com/vim/vim \
  && cd vim \
  && ./configure \
