@@ -4,6 +4,8 @@ FROM alpine:latest as builder
 
 MAINTAINER andy <andycrusoe@gmail.com>
 
+WORKDIR /tmp
+
 ARG CA_BUNDLE_SOURCE=https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem
 ARG CA_BUNDLE_DESTINATION=/usr/local/share/ca-certificates/rds-combined-ca-bundle.pem
 ADD $CA_BUNDLE_SOURCE $CA_BUNDLE_DESTINATION
@@ -11,8 +13,14 @@ RUN cat $CA_BUNDLE_DESTINATION >> /etc/ssl/certs/ca-certificates.crt && \
     apk update && \
     apk upgrade && \
     apk add --no-cache \
-        ca-certificates && \
-    update-ca-certificates 2>/dev/null || true
+        ca-certificates \
+        wget \
+        curl \
+        ttf-dejavu \
+        font-adobe-100dpi && \
+    update-ca-certificates 2>/dev/null || true && \
+    fc-cache -f && \
+    fc-list
 
 ENV LANG=C.UTF-8
 # Here we install GNU libc (aka glibc) and set C.UTF-8 locale as default.
@@ -54,13 +62,11 @@ RUN ALPINE_GLIBC_BASE_URL="https://github.com/sgerrand/alpine-pkg-glibc/releases
         "$ALPINE_GLIBC_BIN_PACKAGE_FILENAME" \
         "$ALPINE_GLIBC_I18N_PACKAGE_FILENAME"
 
-WORKDIR /tmp
-
 # Install build tools
 RUN echo 'https://mirrors.tuna.tsinghua.edu.cn/alpine/latest-stable/main' > /etc/apk/repositories && \
     echo 'https://mirrors.tuna.tsinghua.edu.cn/alpine/latest-stable/community' >> /etc/apk/repositories && \
     apk add --no-cache zlib-dev bzip2-dev pcre-dev openssl-dev ncurses-dev sqlite-dev readline-dev tk-dev && \
-    apk add --no-cache gcc g++ make cmake wget curl
+    apk add --no-cache gcc g++ make cmake
 
 # Install dependencies
 RUN apk add --no-cache \
