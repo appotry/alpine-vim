@@ -2,7 +2,7 @@
 # by tuanhtrng
 FROM alpine:latest as builder
 
-MAINTAINER JAremko <w3techplaygound@gmail.com>
+MAINTAINER andy <andycrusoe@gmail.com>
 
 WORKDIR /tmp
 
