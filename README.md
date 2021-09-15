@@ -1,8 +1,14 @@
-#### `jare/vim-bundle:latest`   
+## Vim IDE 中文化环境
+> 升级到最新版，新增中文字体，中文locale环境，解决中文乱码。
+
+#### Docker Hub [`bloodstar/vim:latest`](https://hub.docker.com/r/bloodstar/vim/) 
+
+#### GitHub [appotry/alpine-vim](https://github.com/appotry/alpine-vim)
+Edit From [JAremko/alpine-vim](https://github.com/JAremko/alpine-vim)
 
 [![](http://i.imgur.com/G6KybVM.png)](http://i.imgur.com/G6KybVM.png) 
 
-#### [For the more *"IDE like experience"* try `jare/drop-in`](https://hub.docker.com/r/jare/drop-in/)  
+#### [For the more *"IDE like experience"* try `bloodstar/drop-in`](https://hub.docker.com/r/bloodstar/drop-in/)  
 [![](http://i.imgur.com/RVTlBBO.png)](http://i.imgur.com/RVTlBBO.png) 
 
 #### [Or Vim/Emacs hybrid `jare/spacemacs`](https://hub.docker.com/r/jare/spacemacs/)   
@@ -10,18 +16,18 @@
 
 ####  Based on ["The Ultimate vimrc"](https://github.com/amix/vimrc)  
 *Make sure to use "Solarized Dark" compatible theme or color palette may look weird.*  
-*You can configure terminal color mode by setting TERM variable `docker run ... -e TERM=<VALUE> jare/vim-bundle `
+*You can configure terminal color mode by setting TERM variable `docker run ... -e TERM=<VALUE> bloodstar/vim `
 By default the `<VALUE>` is `xterm-256color` but for the "less colorful" terminals set it to `xterm`.*
 ###### **The best way to use:**  
 **Make an alias:**
-`alias edit='docker run -ti --rm -v $(pwd):/home/developer/workspace jare/vim-bundle'`
+`alias edit='docker run -ti --rm -v $(pwd):/home/developer/workspace bloodstar/vim'`
 **Have fun!**  `edit some.file`
-*Also You can use  this one for getting updates:*  `alias edit_update="docker pull jare/vim-bundle:latest"`
+*Also You can use  this one for getting updates:*  `alias edit_update="docker pull bloodstar/vim:latest"`
 ###### **How to disable some plugins:**  
-`docker run ... -e DISABLE="'vim-airline', 'nerdtree'" ... jare/vim-bundle`
+`docker run ... -e DISABLE="'vim-airline', 'nerdtree'" ... bloodstar/vim`
 ###### **How to add your plugins and .vimrc:**
   1. Create a folder with your `.vimrc` file and, if you want to add plugins, subfolder called `bundle` with them.
-  2. mount it: `docker run ... -v <***>/my-stuff:/ext/ ... jare/vim-bundle` 
+  2. mount it: `docker run ... -v <***>/my-stuff:/ext/ ... bloodstar/vim` 
   *But the best way will be extending this container.*
 
 ###### **Plugins:**  
@@ -70,13 +76,13 @@ By default the `<VALUE>` is `xterm-256color` but for the "less colorful" termina
 *[.vimrc](https://github.com/JAremko/alpine-vim/blob/master/.vimrc)*
 
 ###### **Working with Golang:**
-  - For the full Golang support you need to mount `/usr/lib/go`. For example, run [`jare/go-tools`](https://hub.docker.com/r/jare/go-tools/) in the detached mode `docker create -v /usr/lib/go --name vim-go-tools jare/go-tools /bin/true` and mount its volumes like this `docker run ...  --volumes-from vim-go-tools ... jare/vim-bundle` or add it to the alias `alias edit="docker run -ti --rm --volumes-from go-tools -v $(pwd):/home/developer/workspace jare/vim-bundle"`
+  - For the full Golang support you need to mount `/usr/lib/go`. For example, run [`jare/go-tools`](https://hub.docker.com/r/jare/go-tools/) in the detached mode `docker create -v /usr/lib/go --name vim-go-tools jare/go-tools /bin/true` and mount its volumes like this `docker run ...  --volumes-from vim-go-tools ... bloodstar/vim` or add it to the alias `alias edit="docker run -ti --rm --volumes-from go-tools -v $(pwd):/home/developer/workspace bloodstar/vim"`
   - If you want to use a [go-tool](https://hub.docker.com/r/jare/go-tools/) , but [vim-go](https://github.com/fatih/vim-go) doesn't provide a shorthand - you can simply type, for example, `:!gofmt %` and it will output formatted source of the current buffers(`%:p ` absolute file path, `%:h` head of the file name and `%:p:h` is the current directory). If you want to overwrite - use `:% ! gofmt %` The `gofmt` tool used as an example, actually, it covered in vim-go.
  
 ###### Alternatively, you can put something like this into .bashrc to automatically bootstrap all containers:  
 
  ``` bash
-#docker vim-bundle
+#docker vim
 function ed() {
   local dtc_id=$(docker ps -a -q --filter 'name=vim-go-tools')
   if [[ -z "${dtc_id}" ]]; then
@@ -87,7 +93,7 @@ function ed() {
   fi
   echo 'Starting Vim'
   docker run -ti --rm -p 8080:8080 --volumes-from 'vim-go-tools' \
-    -v $('pwd'):/home/developer/workspace 'jare/vim-bundle' "${@}"
+    -v $('pwd'):/home/developer/workspace 'bloodstar/vim' "${@}"
 }
 export -f ed
  ```
