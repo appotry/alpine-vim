@@ -63,17 +63,19 @@ COPY .vimrc $UHOME/my.vimrc
 COPY .bashrc $UHOME/.bashrc
 
 # Vim plugins deps
-RUN apk --update add \
+RUN apk --update --no-cache add \
     bash \
     ctags \
     curl \
     git \
     ncurses-terminfo \
     python3 \
+    python3-dev \
+    py-pip \
     linux-headers \
 # YouCompleteMe
     && echo "install build env" \
-    && apk add --virtual build-deps \
+    && apk add --no-cache --virtual build-deps \
     build-base \
     cmake \
     go \
@@ -95,7 +97,7 @@ RUN apk --update add \
 # Cleanup
     && echo "Cleanup" \
     && apk del build-deps \
-    && apk add \
+    && apk add --no-cache \
     libxt \
     libx11 \
     libstdc++ \
