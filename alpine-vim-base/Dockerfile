@@ -4,13 +4,15 @@ FROM alpine:latest as builder
 
 MAINTAINER andy <andycrusoe@gmail.com>
 
-
 ARG CA_BUNDLE_SOURCE=https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem
 ARG CA_BUNDLE_DESTINATION=/usr/local/share/ca-certificates/rds-combined-ca-bundle.pem
 ADD $CA_BUNDLE_SOURCE $CA_BUNDLE_DESTINATION
 RUN cat $CA_BUNDLE_DESTINATION >> /etc/ssl/certs/ca-certificates.crt && \
-    apk add --no-cache ca-certificates && \
-    update-ca-certificates
+    apk update && \
+    apk upgrade && \
+    apk add --no-cache \
+        ca-certificates && \
+    update-ca-certificates 2>/dev/null || true
 
 ENV LANG=C.UTF-8
 # Here we install GNU libc (aka glibc) and set C.UTF-8 locale as default.
