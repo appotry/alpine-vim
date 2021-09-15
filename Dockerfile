@@ -1,5 +1,10 @@
 FROM bloodstar/alpine-vim-base:latest
 
+# Install build tools
+RUN echo 'https://mirrors.tuna.tsinghua.edu.cn/alpine/latest-stable/main' > /etc/apk/repositories && \
+    echo 'https://mirrors.tuna.tsinghua.edu.cn/alpine/latest-stable/community' >> /etc/apk/repositories && \
+    apk add --no-cache git wget curl gcc g++ make cmake
+
 # chinese font
 COPY *.ttc /usr/share/fonts/
 
@@ -11,8 +16,6 @@ RUN cat $CA_BUNDLE_DESTINATION >> /etc/ssl/certs/ca-certificates.crt && \
     apk upgrade && \
     apk add --no-cache \
         ca-certificates \
-        wget \
-        curl \
         ttf-dejavu \
         font-adobe-100dpi && \
     update-ca-certificates 2>/dev/null || true && \
@@ -127,7 +130,6 @@ RUN apk --update --no-cache add \
     bash \
     ctags \
     curl \
-    git \
     ncurses-terminfo \
     python3 \
     python3-dev \
@@ -137,11 +139,9 @@ RUN apk --update --no-cache add \
     && echo "install build env" \
     && apk add --no-cache --virtual build-deps \
     build-base \
-    cmake \
     go \
     llvm \
     perl \
-    python3-dev \
     && git clone --depth 1  https://github.com/Valloric/YouCompleteMe \
     $UHOME/bundle/YouCompleteMe/ \
     && cd $UHOME/bundle/YouCompleteMe \
