@@ -60,7 +60,7 @@ WORKDIR /tmp
 RUN echo 'https://mirrors.tuna.tsinghua.edu.cn/alpine/latest-stable/main' > /etc/apk/repositories && \
     echo 'https://mirrors.tuna.tsinghua.edu.cn/alpine/latest-stable/community' >> /etc/apk/repositories && \
     apk add --no-cache zlib-dev bzip2-dev pcre-dev openssl-dev ncurses-dev sqlite-dev readline-dev tk-dev && \
-    apk add --no-cache gcc g++ make cmake 
+    apk add --no-cache gcc g++ make cmake wget curl
 
 # Install dependencies
 RUN apk add --no-cache \
