@@ -1,3 +1,6 @@
+## Vim IDE 中文化环境
+> 升级到最新版，新增中文字体，中文locale环境，解决中文乱码。
+
 #### Docker Hub [`bloodstar/vim:latest`](https://hub.docker.com/r/bloodstar/vim/) 
 
 #### GitHub [appotry/alpine-vim](https://github.com/appotry/alpine-vim)
