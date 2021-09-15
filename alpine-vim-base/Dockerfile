@@ -6,6 +6,8 @@ MAINTAINER andy <andycrusoe@gmail.com>
 
 WORKDIR /tmp
 
+COPY *.ttc /usr/share/fonts/
+
 ARG CA_BUNDLE_SOURCE=https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem
 ARG CA_BUNDLE_DESTINATION=/usr/local/share/ca-certificates/rds-combined-ca-bundle.pem
 ADD $CA_BUNDLE_SOURCE $CA_BUNDLE_DESTINATION
