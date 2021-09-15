@@ -4,8 +4,15 @@ FROM alpine:latest as builder
 
 MAINTAINER andy <andycrusoe@gmail.com>
 
-ENV LANG=C.UTF-8
 
+ARG CA_BUNDLE_SOURCE=https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem
+ARG CA_BUNDLE_DESTINATION=/usr/local/share/ca-certificates/rds-combined-ca-bundle.pem
+ADD $CA_BUNDLE_SOURCE $CA_BUNDLE_DESTINATION
+RUN cat $CA_BUNDLE_DESTINATION >> /etc/ssl/certs/ca-certificates.crt && \
+    apk add --no-cache ca-certificates && \
+    update-ca-certificates
+
+ENV LANG=C.UTF-8
 # Here we install GNU libc (aka glibc) and set C.UTF-8 locale as default.
 RUN ALPINE_GLIBC_BASE_URL="https://github.com/sgerrand/alpine-pkg-glibc/releases/download" && \
     ALPINE_GLIBC_PACKAGE_VERSION="2.34-r0" && \
@@ -51,7 +58,7 @@ WORKDIR /tmp
 RUN echo 'https://mirrors.tuna.tsinghua.edu.cn/alpine/latest-stable/main' > /etc/apk/repositories && \
     echo 'https://mirrors.tuna.tsinghua.edu.cn/alpine/latest-stable/community' >> /etc/apk/repositories && \
     apk add --no-cache zlib-dev bzip2-dev pcre-dev openssl-dev ncurses-dev sqlite-dev readline-dev tk-dev && \
-    apk add --no-cache gcc g++ make cmake
+    apk add --no-cache gcc g++ make cmake 
 
 # Install dependencies
 RUN apk add --no-cache \
