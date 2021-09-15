@@ -84,7 +84,7 @@ RUN apk add --no-cache \
     py-pip
 
 # Build vim from git source
-pythonver=3.9
+ENV pythonver=3.9
 RUN git clone https://github.com/vim/vim \
  && cd vim \
  && ./configure \
