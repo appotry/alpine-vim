@@ -88,7 +88,7 @@ function ed() {
   if [[ -z "${dtc_id}" ]]; then
    echo 'vim-go-tools container not found. Creating...'
    docker create -v '/usr/lib/go' --name 'vim-go-tools' \
-     'jare/go-tools' '/bin/true'
+     'bloodstar/go-tools' '/bin/true'
    echo 'Done!'
   fi
   echo 'Starting Vim'
@@ -102,7 +102,7 @@ export -f ed
     - drag and drop text into the Vim.
     - use mouse right button menu by holding `Shift`.
   - `<Leader>` mapped to `,`. I use the basic mappings from the great [amix .vimrc](https://github.com/amix/vimrc/tree/master/vimrcs)
-  - You can set the user with the ENV variables [in the Dockerfile](https://github.com/JAremko/alpine-vim/blob/master/Dockerfile#L3)
+  - You can set the user with the ENV variables [in the Dockerfile](https://github.com/appotry/alpine-vim/blob/master/Dockerfile#L3)
   - If Vim or Powerline doesn't look right in the tmux try `tmux -2`
   - If the Golang auto-complete doesn't work  try  `go install` package
   - **Leave a comment if you found a bug or if you have a suggestion**
