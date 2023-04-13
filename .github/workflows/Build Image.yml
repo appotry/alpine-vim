@@ -46,8 +46,8 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           file: ./alpine-vim-base/Dockerfile
-          #platforms: linux/amd64,linux/arm/v6,386
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm/v6,linux/arm/v7,386
+          #platforms: linux/amd64
           push: true
           tags: |
             bloodstar/alpine-vim-base:stable-${{ env.version }}
@@ -58,8 +58,8 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           file: ./Dockerfile
-          #platforms: linux/amd64,linux/arm/v6,386
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm/v6,linux/arm/v7,386
+          #platforms: linux/amd64
           push: true
           tags: |
             bloodstar/vim:stable-${{ env.version }}
