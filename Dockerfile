@@ -137,7 +137,7 @@ RUN echo "install build env" \
     $UHOME/bundle/YouCompleteMe/ \
     && cd $UHOME/bundle/YouCompleteMe \
     && git submodule update --init --recursive \
-    && $UHOME/bundle/YouCompleteMe/install.py --gocode-completer --ignore-errors
+    && $UHOME/bundle/YouCompleteMe/install.py --gocode-completer || true
 # Install and compile procvim.vim  
 RUN  echo "Install and compile procvim.vim" \
     && git clone --depth 1 https://github.com/Shougo/vimproc.vim \
