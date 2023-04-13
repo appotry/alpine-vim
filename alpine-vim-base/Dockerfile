@@ -56,6 +56,9 @@ RUN git clone https://github.com/vim/vim \
     libsm \
     libx11 \
     libxt \
-    ncurses
+    ncurses \
+    python3 \
+    python3-dev \
+    py-pip
 
 ENTRYPOINT ["vim"]
