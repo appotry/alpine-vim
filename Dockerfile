@@ -125,9 +125,9 @@ RUN apk --update --no-cache add \
     python3 \
     python3-dev \
     py-pip \
-    linux-headers \
+    linux-headers 
 # YouCompleteMe
-    && echo "install build env" \
+RUN echo "install build env" \
     && apk add --no-cache --virtual build-deps \
     build-base \
     go \
@@ -137,16 +137,16 @@ RUN apk --update --no-cache add \
     $UHOME/bundle/YouCompleteMe/ \
     && cd $UHOME/bundle/YouCompleteMe \
     && git submodule update --init --recursive \
-    && $UHOME/bundle/YouCompleteMe/install.py --gocode-completer \
+    && $UHOME/bundle/YouCompleteMe/install.py --gocode-completer 
 # Install and compile procvim.vim  
-    && echo "Install and compile procvim.vim" \
+RUN  echo "Install and compile procvim.vim" \
     && git clone --depth 1 https://github.com/Shougo/vimproc.vim \
     $UHOME/bundle/vimproc.vim \
     && cd $UHOME/bundle/vimproc.vim \
     && make \
-    && chown $UID:$GID -R $UHOME \
+    && chown $UID:$GID -R $UHOME 
 # Cleanup
-    && echo "Cleanup" \
+RUN  echo "Cleanup" \
     && apk del build-deps \
     && apk add --no-cache \
     libxt \
